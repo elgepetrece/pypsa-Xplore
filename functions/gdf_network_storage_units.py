@@ -5,9 +5,9 @@ import geopandas as gpd
 
 
 
-def gdf_network_generators(carrier, n, file_regions, path_regions):
+def gdf_network_storage_units(carrier, n, file_regions, path_regions):
     """
-    This function provides a gdf of a network with some generation features 
+    This function provides a gdf of a network with some storage unit features 
     for a specific carrier.
 
     An appropriate region file is required.
@@ -19,51 +19,45 @@ def gdf_network_generators(carrier, n, file_regions, path_regions):
       - area
       - p_nom               : installed capacity [MW]
       - p_nom_density       : ratio between p_nom and area [MW/km2]
-      - p_nom_max           : potential according to land availability [MW]
-      - p_nom_max_density   : ratio between p_nom_max and area [MW/km2]
-      - p_nom_max_ratio     : ration between p_nom and p_nom_max [-]
       - p_nom_opt           : optimal capacity [MW]
       - p_nom_opt_density   : ratio between p_nom_opt and area [MW/km2]
-      - p_nom_opt_max_ratio : ration between p_nom_opt and p_nom_max [-]
+      - max_hours			: ratio between energy store capacity and power generation
 
     The gdf is provided in Plate Carrée crs('4036')    
     """
 
     ##### Get df with generators info
-    gg = n.generators
+    su = n.storage_units
     # filter carrier
-    df = gg[gg['carrier']==carrier]
+    df = su[su['carrier']==carrier]
     # remove zero_capacities
-    df = df.loc[ df['p_nom']>0 , ['carrier', 'bus', 'p_nom', 'p_nom_max', 'p_nom_opt']]
+    df = df.loc[ df['p_nom']>0 , ['carrier', 'bus', 'p_nom', 'p_nom_opt', 'max_hours']]
+
 
 
     ##### Get gdf0 with regions 
     gdf0 = gpd.read_file(path_regions+file_regions)
+
     gdf0.rename(columns={'name': 'bus'}, inplace=True)
-    # Select just some columns
+
+
+    ##### Select just some columns
     gdf0 = gdf0[['bus', 'geometry']]
+
+
     # Add area [km2]
     gdf0_area = gdf0.to_crs(3035)
     gdf0['area'] = gdf0_area.area/1e6
 
  
     ##### Merge df and gdf0
-    gdf = pd.merge(gdf0,df, on='bus')
+    gdf =  pd.merge(gdf0,df, on='bus')
 
     ##### Add p_nom_density 
     gdf['p_nom_density'] = gdf['p_nom'] / gdf['area']
 
-    ##### Add p_nom_max_density
-    gdf['p_nom_max_density'] = gdf['p_nom_max'] / gdf['area']
-
-    ##### Add p_nom_max_ratio
-    gdf['p_nom_max_ratio'] = gdf['p_nom'] / gdf['p_nom_max']
-
     ##### Add p_nom_opt_density 
     gdf['p_nom_opt_density'] = gdf['p_nom_opt'] / gdf['area']
-
-    ##### Add p_nom_opt_max_ratio
-    gdf['p_nom_opt_max_ratio'] = gdf['p_nom_opt'] / gdf['p_nom_max']
 
 
 

@@ -1,6 +1,6 @@
 
 ##### Absolute path where PyPSA-X is cloned
-rootpath: /media/aerolinux3/blue/01_Rsync/aerolinux2/Escritorio/BUZON/Ryzen3975/pypsa-spain_AEC/
+rootpath: 
 
 ##### Plot-network
 bus_sizes: 0.0008
@@ -22,6 +22,14 @@ map_add_features:
   linewidth: 1
 
 map_network_generators:
+  cmap: viridis
+  edgecolor: black
+
+map_network_loads_t:
+  cmap: cividis
+  edgecolor: black
+
+map_network_storage_units:
   cmap: viridis
   edgecolor: black
 
