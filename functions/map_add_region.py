@@ -2,7 +2,7 @@
 import geopandas as gpd
 
 
-def fun_map_add_region(ax, file, path, params):
+def map_add_region(ax, file, path, params):
     
 
     if 'on' in file:

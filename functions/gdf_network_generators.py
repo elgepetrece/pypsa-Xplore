@@ -5,7 +5,7 @@ import geopandas as gpd
 
 
 
-def fun_gdf_network_generators(carrier, n, file_regions, path_regions):
+def gdf_network_generators(carrier, n, file_regions, path_regions):
     """
     This function provides a gdf of a network with some generation features 
     for a specific carrier.
@@ -38,42 +38,42 @@ def fun_gdf_network_generators(carrier, n, file_regions, path_regions):
 
 
 
-    ##### Get gdf with regions 
-    gdf = gpd.read_file(path_regions+file_regions)
+    ##### Get gdf0 with regions 
+    gdf0 = gpd.read_file(path_regions+file_regions)
 
-    gdf.rename(columns={'name': 'bus'}, inplace=True)
+    gdf0.rename(columns={'name': 'bus'}, inplace=True)
 
 
     ##### Select just some columns
-    gdf = gdf[['bus', 'geometry']]
+    gdf0 = gdf0[['bus', 'geometry']]
 
 
     # Add area [km2]
-    gdf_area = gdf.to_crs(3035)
-    gdf['area'] = gdf_area.area/1e6
+    gdf0_area = gdf0.to_crs(3035)
+    gdf0['area'] = gdf0_area.area/1e6
 
  
-    ##### Merge df and gdf
-    gdf_network_generators =  pd.merge(gdf,df, on='bus')
+    ##### Merge df and gdf0
+    gdf =  pd.merge(gdf0,df, on='bus')
 
     ##### Add p_nom_density 
-    gdf_network_generators['p_nom_density'] = gdf_network_generators['p_nom'] / gdf_network_generators['area']
+    gdf['p_nom_density'] = gdf['p_nom'] / gdf['area']
 
     ##### Add p_nom_max_density
-    gdf_network_generators['p_nom_max_density'] = gdf_network_generators['p_nom_max'] / gdf_network_generators['area']
+    gdf['p_nom_max_density'] = gdf['p_nom_max'] / gdf['area']
 
     ##### Add p_nom_max_ratio
-    gdf_network_generators['p_nom_max_ratio'] = gdf_network_generators['p_nom'] / gdf_network_generators['p_nom_max']
+    gdf['p_nom_max_ratio'] = gdf['p_nom'] / gdf['p_nom_max']
 
     ##### Add p_nom_opt_density 
-    gdf_network_generators['p_nom_opt_density'] = gdf_network_generators['p_nom_opt'] / gdf_network_generators['area']
+    gdf['p_nom_opt_density'] = gdf['p_nom_opt'] / gdf['area']
 
     ##### Add p_nom_opt_max_ratio
-    gdf_network_generators['p_nom_opt_max_ratio'] = gdf_network_generators['p_nom_opt'] / gdf_network_generators['p_nom_max']
+    gdf['p_nom_opt_max_ratio'] = gdf['p_nom_opt'] / gdf['p_nom_max']
 
 
 
-    return gdf_network_generators
+    return gdf
 
 
 

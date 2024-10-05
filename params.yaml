@@ -1,6 +1,6 @@
 
 ##### Absolute path where PyPSA-X is cloned
-rootpath: 
+rootpath: /media/aerolinux3/blue/01_Rsync/aerolinux2/Escritorio/BUZON/Ryzen3975/pypsa-spain_AEC/
 
 ##### Plot-network
 bus_sizes: 0.0008
@@ -8,20 +8,20 @@ bus_colors: black
 boundaries_onshore: [-9.93, 4.11, 35.61, 44.18]
 boundaries_offshore: [-14, 6.35, 35, 47]
 
-fun_map_add_region:
+map_add_region:
   color_onshore: wheat
   color_offshore: aliceblue
   edgecolor: black
   lw: 0.2   
 
-fun_map_add_features:
+map_add_features:
   color_BORDERS: black
   color_COASTLINE: black
   color_LAND: beige
   color_OCEAN: none
   linewidth: 1
 
-fun_map_network_generators:
+map_network_generators:
   cmap: viridis
   edgecolor: black
 
