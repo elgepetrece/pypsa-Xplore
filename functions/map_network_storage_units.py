@@ -4,7 +4,7 @@ from .gdf_network_storage_units import gdf_network_storage_units
 
 
 
-def map_network_storage_units(carrier, n, feature, ax, file_regions, path_regions, params, params_local):
+def map_network_storage_units(carrier, n, feature, ax, gdf_regions, params, params_local):
     """
     This function plots storage unit features for a specific carrier
     in the geometry of a network.
@@ -18,7 +18,7 @@ def map_network_storage_units(carrier, n, feature, ax, file_regions, path_region
       - max_hours			: ratio between energy store capacity and power generation
     """
 
-    gdf = gdf_network_storage_units(carrier, n, file_regions, path_regions)
+    gdf = gdf_network_storage_units(carrier, n, gdf_regions)
 
 
 

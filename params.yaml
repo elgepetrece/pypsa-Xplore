@@ -2,12 +2,13 @@
 ##### Absolute path where PyPSA-X is cloned
 rootpath: 
 
-##### Plot-network
+##### plot network
 bus_sizes: 0.0008
 bus_colors: black
 boundaries_onshore: [-9.93, 4.11, 35.61, 44.18]
 boundaries_offshore: [-14, 6.35, 35, 47]
 
+##### functions
 map_add_region:
   color_onshore: wheat
   color_offshore: aliceblue
@@ -33,4 +34,6 @@ map_network_storage_units:
   cmap: viridis
   edgecolor: black
 
-
+map_NUTS_generators:
+  cmap: viridis
+  edgecolor: black

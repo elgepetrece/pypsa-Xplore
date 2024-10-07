@@ -4,7 +4,7 @@ from .gdf_network_loads_t import gdf_network_loads_t
 
 
 
-def map_network_loads_t(n, feature, ax, file_regions, path_regions, params, params_local):
+def map_network_loads_t(n, feature, ax, gdf_regions, params, params_local):
     """
     This function plots load features in the geometry of a network.
 
@@ -14,7 +14,7 @@ def map_network_loads_t(n, feature, ax, file_regions, path_regions, params, para
       - annual_load_density : [GWh/km2]      
     """
 
-    gdf = gdf_network_loads_t(n, file_regions, path_regions)
+    gdf = gdf_network_loads_t(n, gdf_regions)
 
 
 

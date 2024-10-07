@@ -5,7 +5,7 @@ import geopandas as gpd
 
 
 
-def gdf_network_storage_units(carrier, n, file_regions, path_regions):
+def gdf_network_storage_units(carrier, n, gdf_regions):
     """
     This function provides a gdf of a network with some storage unit features 
     for a specific carrier.
@@ -36,7 +36,7 @@ def gdf_network_storage_units(carrier, n, file_regions, path_regions):
 
 
     ##### Get gdf0 with regions 
-    gdf0 = gpd.read_file(path_regions+file_regions)
+    gdf0 = gdf_regions.copy()
 
     gdf0.rename(columns={'name': 'bus'}, inplace=True)
 

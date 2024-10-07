@@ -2,14 +2,13 @@
 import geopandas as gpd
 
 
-def map_add_region(ax, file_regions, path_regions, params):
+def map_add_region(ax, gdf_regions, params, is_offshore=False):
     
-
-    if 'on' in file_regions:
-        color = params['color_onshore']
     
-    if 'off' in file_regions:
+    if is_offshore:
         color = params['color_offshore']
+    else:
+        color = params['color_onshore']
 
-    gpd.read_file(path_regions+file_regions).plot(ax=ax, color=color, edgecolor=params['edgecolor'], lw=params['lw'])
+    gdf_regions.plot(ax=ax, color=color, edgecolor=params['edgecolor'], lw=params['lw'])
 

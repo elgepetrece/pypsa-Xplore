@@ -5,7 +5,7 @@ import geopandas as gpd
 
 
 
-def gdf_network_loads_t(n, file_regions, path_regions):
+def gdf_network_loads_t(n, gdf_regions):
     """
     This function provides a gdf of a network with some load_t features.
 
@@ -32,7 +32,7 @@ def gdf_network_loads_t(n, file_regions, path_regions):
 
 
     ##### Get gdf0 with regions 
-    gdf0 = gpd.read_file(path_regions+file_regions)
+    gdf0 = gdf_regions.copy()
     gdf0.rename(columns={'name': 'bus'}, inplace=True)
     # Select just some columns
     gdf0 = gdf0[['bus', 'geometry']]
