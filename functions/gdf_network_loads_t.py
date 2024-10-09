@@ -7,7 +7,7 @@ import geopandas as gpd
 
 def gdf_network_loads_t(n, gdf_regions):
     """
-    This function provides a gdf of a network with some load_t features.
+    This function provides a gdf of a network with some load features.
 
     An appropriate region file is required.
 

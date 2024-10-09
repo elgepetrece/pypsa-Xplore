@@ -15,7 +15,7 @@ def map_network_storage_units(carrier, n, feature, ax, gdf_regions, params, para
       - p_nom_density       : ratio between p_nom and area [MW/km2]
       - p_nom_opt           : optimal capacity [MW]
       - p_nom_opt_density   : ratio between p_nom_opt and area [MW/km2]
-      - max_hours			: ratio between energy store capacity and power generation
+      - max_hours			: ratio between energy store capacity and power capacity
     """
 
     gdf = gdf_network_storage_units(carrier, n, gdf_regions)

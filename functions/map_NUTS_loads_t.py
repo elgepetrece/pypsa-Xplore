@@ -1,20 +1,20 @@
 
 
-from .gdf_network_loads_t import gdf_network_loads_t
+from .gdf_NUTS_loads_t import gdf_NUTS_loads_t
 
 
 
-def map_network_loads_t(n, feature, ax, gdf_regions, params, params_local):
+def map_NUTS_loads_t(n, feature, ax, gdf_regions, gdf_NUTS, params, params_local):
     """
-    This function plots load features in the geometry of a network.
+    This function plots load features aggregated to NUTS level.
 
     Features:
       - area
       - annual_load         : [TWh]
-      - annual_load_density : [GWh/km2]      
+      - annual_load_density : [GWh/km2] 
     """
 
-    gdf = gdf_network_loads_t(n, gdf_regions)
+    gdf = gdf_NUTS_loads_t(n, gdf_regions, gdf_NUTS)
 
 
 
@@ -24,9 +24,9 @@ def map_network_loads_t(n, feature, ax, gdf_regions, params, params_local):
 
     if params_local['vmax']=='':
         params_local['vmax'] = gdf[feature].max()
-
-
-
+    
+    
+    
     ##### Plot in map
     gdf.plot(ax=ax, column=feature, 
              cmap=params['cmap'], edgecolor=params['edgecolor'],
@@ -34,16 +34,15 @@ def map_network_loads_t(n, feature, ax, gdf_regions, params, params_local):
              legend=True)
 
 
-    if feature=='area':
+    if feature=='area_NUTS':
         total = gdf[feature].sum()
         ax.set_title(f'Area. Total: {total:.2f} km2')
 
-    if feature=='annual_load':
+    if feature=='annual_load_NUTS':
         total = gdf[feature].sum()
         ax.set_title(f'Annual load. Total: {total:.2f} TWh')        
 
-    if feature=='annual_load_density':
+    if feature=='annual_load_density_NUTS':
         ax.set_title(f'Annual load density [GWh/km2]')
-
 
 
