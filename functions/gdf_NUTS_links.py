@@ -3,12 +3,12 @@
 import pandas as pd
 import geopandas as gpd
 
-from .gdf_network_storage_units import gdf_network_storage_units
+from .gdf_network_links import gdf_network_links
 
 
-def gdf_NUTS_storage_units(carrier, n, gdf_regions, gdf_NUTS):
+def gdf_NUTS_links(carrier, n, gdf_regions, gdf_NUTS):
     """
-    This function provides a gdf of a network with some storage unit features 
+    This function provides a gdf of a network with some link features 
     aggregated at NUTS level for a specific carrier.
 
     Appropriate region and NUTS files are required.
@@ -16,17 +16,16 @@ def gdf_NUTS_storage_units(carrier, n, gdf_regions, gdf_NUTS):
     Columns:
       - geometry
       - NUTS_ID
-      - area_NUTS      
+      - area_NUTS
       - p_nom_NUTS               : installed capacity [MW]
-      - p_nom_density_NUTS       : ratio between p_nom and area [MW/km2]
       - p_nom_opt_NUTS           : optimal capacity [MW]
-      - p_nom_opt_density_NUTS   : ratio between p_nom_opt and area [MW/km2]
-      - max_hours_NUTS			 : ratio between energy store capacity and power capacity
+      - p_nom_e_NUTS             : installed capacity [MW] (includes link efficiency if required)
+      - p_nom_e_opt_NUTS         : optimal capacity [MW] (includes link efficiency if required)
 
     The gdf is provided in Plate Carrée crs('4036')    
     """
 
-    gdf_network = gdf_network_storage_units(carrier, n, gdf_regions)
+    gdf_network = gdf_network_links(carrier, n, gdf_regions)
     gdf_network = gdf_network.to_crs('3035')
 
 
@@ -46,23 +45,25 @@ def gdf_NUTS_storage_units(carrier, n, gdf_regions, gdf_NUTS):
     # Get p_nom_NUTS according to percentage of intersected areas
     intersected['p_nom_NUTS'] = intersected['p_nom'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell
     # Get p_nom_opt_NUTS according to percentage of intersected areas
-    intersected['p_nom_opt_NUTS'] = intersected['p_nom_opt'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell0
-    # Get max_hours_NUTS according to percentage of intersected areas
-    intersected['max_hours_NUTS'] = intersected['max_hours'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell0
+    intersected['p_nom_opt_NUTS'] = intersected['p_nom_opt'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell
+    # Get p_nom_e_NUTS according to percentage of intersected areas
+    intersected['p_nom_e_NUTS'] = intersected['p_nom_e'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell
+    # Get p_nom_e_opt_NUTS according to percentage of intersected areas
+    intersected['p_nom_e_opt_NUTS'] = intersected['p_nom_e_opt'] * (intersected['area_intersection'] / intersected['area']/1e6) # 'area' refers to Voronoi cell
 
     df_p_nom_NUTS = intersected.groupby('NUTS_ID')['p_nom_NUTS'].sum().reset_index()
     df_p_nom_opt_NUTS = intersected.groupby('NUTS_ID')['p_nom_opt_NUTS'].sum().reset_index()
-    df_max_hours_NUTS = intersected.groupby('NUTS_ID')['max_hours_NUTS'].mean().reset_index()
+    df_p_nom_e_NUTS = intersected.groupby('NUTS_ID')['p_nom_e_NUTS'].sum().reset_index()
+    df_p_nom_e_opt_NUTS = intersected.groupby('NUTS_ID')['p_nom_e_opt_NUTS'].sum().reset_index()
 
 
-    ##### Merge gdf_NUTS and df_p_nom_NUTS, df_p_nom_opt_NUTS, df_max_hours_NUTS
+    ##### Merge gdf_NUTS and df_p_nom_NUTS, df_p_nom_opt_NUTS, df_p_nom_e_NUTS, df_p_nom_e_opt_NUTS
     gdf = pd.merge(gdf_NUTS, df_p_nom_NUTS, on='NUTS_ID')
     gdf = pd.merge(gdf, df_p_nom_opt_NUTS, on='NUTS_ID')
-    gdf = pd.merge(gdf, df_max_hours_NUTS, on='NUTS_ID')
+    gdf = pd.merge(gdf, df_p_nom_e_NUTS, on='NUTS_ID')
+    gdf = pd.merge(gdf, df_p_nom_e_opt_NUTS, on='NUTS_ID')
 
-    # Add more columns
-    gdf['p_nom_density_NUTS'] = gdf['p_nom_NUTS'] / gdf['area_NUTS']
-    gdf['p_nom_opt_density_NUTS'] = gdf['p_nom_opt_NUTS'] / gdf['area_NUTS']
+
     
     gdf = gdf.to_crs('4036')
 

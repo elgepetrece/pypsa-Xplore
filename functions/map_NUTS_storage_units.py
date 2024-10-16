@@ -6,7 +6,7 @@ from .gdf_NUTS_storage_units import gdf_NUTS_storage_units
 
 def map_NUTS_storage_units(carrier, n, feature, ax, gdf_regions, gdf_NUTS, params, params_local):
     """
-    This function plots a generation features for a specific carrier
+    This function plots a storage unit features for a specific carrier
     aggregated to NUTS level.
 
     Features:

@@ -22,12 +22,17 @@ map_add_features:
   color_OCEAN: none
   linewidth: 1
 
+
 map_network_generators:
   cmap: viridis
   edgecolor: black
 
 map_network_generatorst_pmaxpu:
   cmap: viridis
+  edgecolor: black
+
+map_network_links:
+  cmap: Reds
   edgecolor: black
 
 map_network_loads_t:
@@ -38,8 +43,17 @@ map_network_storage_units:
   cmap: viridis
   edgecolor: black
 
+map_network_stores:
+  cmap: Blues
+  edgecolor: black
+
+
 map_NUTS_generators:
   cmap: viridis
+  edgecolor: black
+
+map_NUTS_links:
+  cmap: Reds
   edgecolor: black
 
 map_NUTS_loads_t:
@@ -48,6 +62,10 @@ map_NUTS_loads_t:
 
 map_NUTS_storage_units:
   cmap: viridis
+  edgecolor: black
+
+map_NUTS_stores:
+  cmap: Blues
   edgecolor: black
 
 

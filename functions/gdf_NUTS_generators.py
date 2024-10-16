@@ -16,7 +16,6 @@ def gdf_NUTS_generators(carrier, n, gdf_regions, gdf_NUTS):
     Columns:
       - geometry
       - NUTS_ID
-      - carrier
       - area_NUTS
       - p_nom_NUTS               : installed capacity [MW]
       - p_nom_density_NUTS       : ratio between p_nom_NUTS and area_NUTS [MW/km2]
