@@ -3,6 +3,8 @@ from .map_add_features import map_add_features
 
 from .map_add_region import map_add_region
 
+from .df_capacities import df_capacities
+
 from .gdf_network_generators import gdf_network_generators
 from .gdf_network_generatorst_pmaxpu import gdf_network_generatorst_pmaxpu
 from .gdf_network_links import gdf_network_links
