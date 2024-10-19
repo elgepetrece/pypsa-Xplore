@@ -3,7 +3,7 @@
 import pandas as pd
 
 
-def df_capacities(n):
+def df_network_capacities(n):
     """
     This function provides a df with 2 columns, "Initial_capacity" and "Optimal_capacity".
     
