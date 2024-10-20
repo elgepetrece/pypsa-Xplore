@@ -35,3 +35,6 @@ from .map_NUTS_stores import map_NUTS_stores
 
 
 from .xd_set_capacities import xd_set_capacities
+from .xd_csv_prices import xd_csv_prices
+
+

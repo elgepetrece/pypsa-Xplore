@@ -33,7 +33,7 @@ def xd_set_capacities(rootpath, dic_lists):
                                ])
 
 
-    ##### Creare xd array
+    ##### Create xd array
     xd = xr.Dataset(
         {
         'Initial_capacity': (['prefix', 'name', 'simpl', 'clusters', 'll',
@@ -57,7 +57,7 @@ def xd_set_capacities(rootpath, dic_lists):
     )
         
         
-    ##### Asigna valores de la feature
+    ##### Add values
     
     for prefix in prefix_list:
         
