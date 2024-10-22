@@ -91,6 +91,8 @@ def xd_set_capacities(rootpath, dic_lists):
                                         xd['Initial_capacity'].loc[prefix, name, simpl, clusters, ll, opts, sector_opts, horizons, carrier] = df.loc[carrier, 'Initial_capacity']
                                         xd['Optimal_capacity'].loc[prefix, name, simpl, clusters, ll, opts, sector_opts, horizons, carrier] = df.loc[carrier, 'Optimal_capacity']
 
+                                    del n, df
+
 
     ##### Remove dimensions with one single value
     xd = np.squeeze(xd)
