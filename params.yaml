@@ -22,6 +22,14 @@ map_add_features:
   color_OCEAN: none
   linewidth: 1
 
+map_add_features_line:
+  color_BORDERS: black
+  color_COASTLINE: black
+  color_LAND: none
+  color_OCEAN: none
+  linewidth: 1
+
+
 
 map_network_generators:
   cmap: viridis
