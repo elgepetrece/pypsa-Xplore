@@ -3,3 +3,9 @@
 
 # Ignorar los checkpoints automáticos de Jupyter
 .ipynb_checkpoints/
+
+
+# Ignorar entornos virtuales de Python (si usas uno)
+venv/
+__pycache__/
+*.pyc
