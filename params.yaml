@@ -1,6 +1,6 @@
 
 ##### Absolute path where PyPSA-X is cloned
-rootpath: /home/aerolinux3/DOCK_01/repositories/git-aerolinux3/pypsa-spain/
+rootpath: 
 
 ##### plot network
 bus_sizes: 0.0008
