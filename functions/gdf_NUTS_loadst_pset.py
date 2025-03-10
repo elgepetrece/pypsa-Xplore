@@ -3,10 +3,10 @@
 import pandas as pd
 import geopandas as gpd
 
-from .gdf_network_loads_t import gdf_network_loads_t
+from .gdf_network_loadst_pset import gdf_network_loadst_pset
 
 
-def gdf_NUTS_loads_t(n, gdf_regions, gdf_NUTS):
+def gdf_NUTS_loadst_pset(n, gdf_regions, gdf_NUTS):
     """
     This function provides a gdf of a network with some load features 
     aggregated at NUTS level.
@@ -23,7 +23,7 @@ def gdf_NUTS_loads_t(n, gdf_regions, gdf_NUTS):
     The gdf is provided in Plate Carrée crs('4036')    
     """
 
-    gdf_network = gdf_network_loads_t(n, gdf_regions)
+    gdf_network = gdf_network_loadst_pset(n, gdf_regions)
     gdf_network = gdf_network.to_crs('3035')
 
 

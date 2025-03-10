@@ -51,7 +51,7 @@ map_network_links:
   edgecolor: black
   lw: 0.2
 
-map_network_loads_t:
+map_network_loadst_pset:
   cmap: cividis
   edgecolor: black
   lw: 0.2
@@ -79,7 +79,7 @@ map_NUTS_links:
   edgecolor: black
   lw: 0.2
 
-map_NUTS_loads_t:
+map_NUTS_loadst_pset:
   cmap: cividis
   edgecolor: black
   lw: 0.2
