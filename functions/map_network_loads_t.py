@@ -29,7 +29,7 @@ def map_network_loads_t(n, feature, ax, gdf_regions, params, params_local):
 
     ##### Plot in map
     gdf.plot(ax=ax, column=feature, 
-             cmap=params['cmap'], edgecolor=params['edgecolor'],
+             cmap=params['cmap'], edgecolor=params['edgecolor'], lw=params['lw'],
              vmin=params_local['vmin'], vmax=params_local['vmax'], 
              legend=True)
 
