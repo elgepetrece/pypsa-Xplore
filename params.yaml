@@ -7,8 +7,8 @@ rootpath:
 ##### plot network
 bus_sizes: 0.0008
 bus_colors: black
-boundaries_onshore: [-9.93, 4.11, 35.61, 44.18]
-boundaries_offshore: [-14, 6.35, 35, 47]
+boundaries_onshore: [-9.93, 4.11, 35.61, 44.18]   ### EU: [-11, 30, 34, 71]
+boundaries_offshore: [-14, 6.35, 35, 47]   ### EU: [-17, 37, 33, 75]
 
 
 
