@@ -1,6 +1,6 @@
 
 ##### Absolute path where PyPSA-X is cloned
-rootpath: 
+rootpath: /home/aerolinux2/DOCK_01/repositories/git-aerolinux2/pypsa-spain/
 
 
 
@@ -16,7 +16,7 @@ boundaries_offshore: [-14, 6.35, 35, 47]   ### EU: [-17, 37, 33, 75]
 map_add_features:
   color_BORDERS: black
   color_COASTLINE: black
-  color_LAND: beige
+  color_LAND: silver # beige
   color_OCEAN: none
   linewidth: 1
 
