@@ -6,7 +6,7 @@ from .gdf_network_generatorst_pmaxpu import gdf_network_generatorst_pmaxpu
 
 def map_network_generatorst_pmaxpu(carrier, n, feature, ax, gdf_regions, params, params_local):
     """
-    This function plots generation_t features for a specific carrier
+    This function plots generation_t features based on p_max_pu for a specific carrier
     in the geometry of a network.
 
     Features:

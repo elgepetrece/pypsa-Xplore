@@ -30,8 +30,8 @@ def gdf_network_storage_units(carrier, n, gdf_regions):
     su = n.storage_units
     # filter carrier
     df = su[su['carrier']==carrier]
-    # remove zero_capacities
-    df = df.loc[ df['p_nom']>0 , ['carrier', 'bus', 'p_nom', 'p_nom_opt', 'max_hours']]
+    # select some relevant columns
+    df = df.loc[['carrier', 'bus', 'p_nom', 'p_nom_opt', 'max_hours']]
 
 
 
