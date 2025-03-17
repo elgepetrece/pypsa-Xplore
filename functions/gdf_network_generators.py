@@ -34,7 +34,7 @@ def gdf_network_generators(carrier, n, gdf_regions):
     # filter carrier
     df = gg[gg['carrier']==carrier]
     # select some relevant columns
-    df = df.loc[['carrier', 'bus', 'p_nom', 'p_nom_max', 'p_nom_opt']]
+    df = df[['carrier', 'bus', 'p_nom', 'p_nom_max', 'p_nom_opt']]
 
 
     ##### Get gdf0 with regions 

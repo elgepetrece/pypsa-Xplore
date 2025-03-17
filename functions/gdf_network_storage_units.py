@@ -31,7 +31,7 @@ def gdf_network_storage_units(carrier, n, gdf_regions):
     # filter carrier
     df = su[su['carrier']==carrier]
     # select some relevant columns
-    df = df.loc[['carrier', 'bus', 'p_nom', 'p_nom_opt', 'max_hours']]
+    df = df[['carrier', 'bus', 'p_nom', 'p_nom_opt', 'max_hours']]
 
 
 
