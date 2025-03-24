@@ -38,8 +38,8 @@ def gdf_network_links(carrier, n, gdf_regions):
     lk = n.links
     # filter carrier
     df = lk[lk['carrier']==carrier]
-    # remove zero_capacities in optimal capacity
-    df = df.loc[ df['p_nom_opt']>0 , ['carrier', 'bus0', 'bus1', 'efficiency', 'p_nom', 'p_nom_opt']]
+    # select some relevant columns
+    df = df[['carrier', 'bus0', 'bus1', 'efficiency', 'p_nom', 'p_nom_opt']]
     # add column 'bus' according to the link direction for the selected carrier. 
     # Also, create column 'p_nom_e' and 'p_nom_e_opt' for electric capacity.
     if carrier in ['CCGT', 'OCGT', 'H2 Fuel Cell', 'battery discharger']:

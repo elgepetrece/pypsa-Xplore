@@ -27,8 +27,8 @@ def gdf_network_stores(carrier, n, gdf_regions):
     st = n.stores
     # filter carrier
     df = st[st['carrier']==carrier]
-    # remove zero_capacities
-    df = df.loc[ df['e_nom_opt']>0 , ['carrier', 'bus', 'e_nom_opt']]
+    # select some relevant columns
+    df = df[['carrier', 'bus', 'e_nom_opt']]
     # Put in GWh
     df['e_nom_opt'] = df['e_nom_opt'].div(1e3)
     # place 'bus' in 'bus_original', and create 'bus'
